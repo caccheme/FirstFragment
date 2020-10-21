@@ -16,5 +16,4 @@ class SimpleFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_simple, container, false)
     }
 
-
 }
