@@ -3,21 +3,34 @@ package com.example.firstfragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
+import com.example.firstfragment.constants.FRAGMENT_TAG
 
 
 class MainActivity : AppCompatActivity() {
-
-    private val fragment: SimpleFragment = SimpleFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 
-    fun clickHandler(@Suppress("UNUSED_PARAMETER")view: View) {
+    fun addClickHandler(@Suppress("UNUSED_PARAMETER")view: View) {
+        val fragment = SimpleFragment()
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.simple_fragment, fragment)
+            .add(R.id.fragment_container, fragment, FRAGMENT_TAG)
             .commit()
+    }
+
+    fun removeClickHandler(@Suppress("UNUSED_PARAMETER")view: View) {
+        val fragment: Fragment? = supportFragmentManager
+            .findFragmentByTag(FRAGMENT_TAG)
+
+        if (fragment != null) {
+            supportFragmentManager
+                .beginTransaction()
+                .remove(fragment)
+                .commit()
+        }
     }
 }
