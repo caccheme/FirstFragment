@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val fragment = SimpleFragment()
         supportFragmentManager
             .beginTransaction()
+            .addToBackStack(null)
             .add(R.id.fragment_container, fragment, FRAGMENT_TAG)
             .commit()
     }
