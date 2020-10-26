@@ -1,8 +1,8 @@
 package com.example.firstfragment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.firstfragment.constants.FRAGMENT_TAG
 
@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addClickHandler(@Suppress("UNUSED_PARAMETER")view: View) {
-
         val arguments = Bundle()
         arguments.putString(SimpleFragment.MESSAGE_KEY, "Passed as an argument")
 
