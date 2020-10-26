@@ -11,7 +11,6 @@ import com.example.firstfragment.constants.LIFECYCLE_TAG
 
 class SimpleFragment : Fragment() {
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.i(LIFECYCLE_TAG, "onAttach")
@@ -20,6 +19,10 @@ class SimpleFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(LIFECYCLE_TAG, "onCreate")
+    }
+
+    companion object {
+        const val MESSAGE_KEY = "message_key"
     }
 
 
