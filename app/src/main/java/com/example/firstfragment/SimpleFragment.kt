@@ -26,6 +26,15 @@ class SimpleFragment : Fragment() {
         const val MESSAGE_KEY = "message_key"
     }
 
+    fun newInstance(message: String): SimpleFragment {
+        val args = Bundle()
+        args.putString(MESSAGE_KEY, message)
+
+        val fragment = SimpleFragment()
+        fragment.arguments = args
+        return fragment
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

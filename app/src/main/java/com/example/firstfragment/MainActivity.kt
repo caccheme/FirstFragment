@@ -14,11 +14,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addClickHandler(@Suppress("UNUSED_PARAMETER")view: View) {
-        val arguments = Bundle()
-        arguments.putString(SimpleFragment.MESSAGE_KEY, "Passed as an argument")
 
-        val fragment = SimpleFragment()
-        fragment.arguments = arguments
+        val fragment = SimpleFragment().newInstance("Passed to factory method")
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)
