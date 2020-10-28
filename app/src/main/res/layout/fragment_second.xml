@@ -5,14 +5,15 @@
     android:layout_height="wrap_content"
     android:background="@android:color/holo_blue_light"
     android:padding="10dp"
-    tools:context=".SimpleFragment">
+    tools:context=".SecondFragment">
 
     <TextView
-        android:id="@+id/message"
+        android:id="@+id/text_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/hello_blank_fragment"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/hello_blank_second_fragment"
         android:textSize="24sp" />
 
 </RelativeLayout>

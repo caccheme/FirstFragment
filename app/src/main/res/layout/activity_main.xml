@@ -15,15 +15,37 @@
         android:id="@+id/fragment_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerInParent="true" />
+
+    <FrameLayout
+        android:id="@+id/fragment2_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/mOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mOut"
+        android:onClick="onMeasureBtnClick"
+        android:text="@string/measure" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:onClick="addClickHandler"
         android:text="@string/add_fragment" />
 
@@ -31,11 +53,11 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:onClick="removeClickHandler"
-        android:layout_alignTop="@+id/button"
-        android:text="@string/remove"
+        android:text="@string/remove_fragment"
         tools:ignore="RelativeOverlap" />
 
 </RelativeLayout>
