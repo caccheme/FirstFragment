@@ -17,11 +17,11 @@ class MainActivity : AppCompatActivity() {
 
     fun addClickHandler(@Suppress("UNUSED_PARAMETER") view: View) {
 
-        val fragment = SimpleFragment().newInstance("Passed to factory method")
+        val fragment = AppearingFragment().newInstance("Passed to factory method")
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)
-            .add(R.id.fragment_container, fragment, FRAGMENT_TAG)
+            .add(R.id.appearing_fragment_container, fragment, FRAGMENT_TAG)
             .commit()
     }
 

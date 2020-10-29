@@ -12,16 +12,20 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/appearing_fragment_container"
         android:layout_width="wrap_content"
+        android:layout_marginTop="100dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
         android:id="@+id/mOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_alignStart="@+id/fragment"
+        android:layout_alignLeft="@+id/fragment"
+        android:layout_centerInParent="true"
         android:textSize="24sp" />
 
     <Button
@@ -52,5 +56,7 @@
         android:onClick="removeClickHandler"
         android:text="@string/remove_fragment"
         tools:ignore="RelativeOverlap" />
+
+    <include layout="@layout/content_main" />
 
 </RelativeLayout>

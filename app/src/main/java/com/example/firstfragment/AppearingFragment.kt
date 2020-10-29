@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
-class SimpleFragment : Fragment() {
+class AppearingFragment : Fragment() {
 
     companion object {
         const val MESSAGE_KEY = "message_key"
     }
 
-    fun newInstance(message: String): SimpleFragment {
+    fun newInstance(message: String): AppearingFragment {
         val args = Bundle()
         args.putString(MESSAGE_KEY, message)
 
-        val fragment = SimpleFragment()
+        val fragment = AppearingFragment()
         fragment.arguments = args
         return fragment
     }
@@ -28,7 +28,7 @@ class SimpleFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_simple, container, false)
+        val view = inflater.inflate(R.layout.fragment_appearing, container, false)
 
         arguments
         if (arguments != null) {
