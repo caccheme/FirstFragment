@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingStart="@dimen/activity_horizontal_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="16dp"
     android:paddingEnd="16dp"
-    android:paddingRight="16dp"
     android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/appearing_fragment_container"
         android:layout_width="wrap_content"
-        android:layout_marginTop="100dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="100dp" />
 
     <TextView
         android:id="@+id/mOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/fragment"
-        android:layout_alignLeft="@+id/fragment"
         android:layout_centerInParent="true"
         android:textSize="24sp" />
 
@@ -42,7 +38,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:onClick="addClickHandler"
         android:text="@string/add_fragment" />
@@ -53,7 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:onClick="removeClickHandler"
         android:text="@string/remove_fragment"
         tools:ignore="RelativeOverlap" />
@@ -63,8 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        tools:ignore="NewApi" />
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <include layout="@layout/content_main" />
 
