@@ -1,6 +1,7 @@
 package com.example.firstfragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.firstfragment.constants.FRAGMENT_TAG
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var mTablet: Boolean = true
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +26,28 @@ class MainActivity : AppCompatActivity() {
         this.setSupportActionBar(toolbar)
 
         val fragmentContainer = findViewById<ViewGroup>(R.id.detail_fragment_container)
-        val mTablet: Boolean = (fragmentContainer != null)
+        mTablet = fragmentContainer != null
 
         val tvOut: TextView = findViewById(R.id.textOut)
         tvOut.text = "Fragments side-by-side? $mTablet"
+
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+        fab.setOnClickListener { viewDetailFragment() }
+    }
+
+    private fun viewDetailFragment() {
+        if (mTablet){
+            val fragmentManager = supportFragmentManager
+            val fragment = DetailActivityFragment()
+            fragmentManager
+                .beginTransaction()
+                .addToBackStack(null)
+                .add(R.id.detail_fragment_container, fragment)
+                .commit()
+        }else{
+            val intent = Intent(this, DetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun addClickHandler(@Suppress("UNUSED_PARAMETER") view: View) {
