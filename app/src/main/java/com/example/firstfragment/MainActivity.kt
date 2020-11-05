@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity(), DetailFragment.FragmentListener {
@@ -19,8 +18,6 @@ class MainActivity : AppCompatActivity(), DetailFragment.FragmentListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        this.setSupportActionBar(toolbar)
 
         val fragmentContainer = findViewById<ViewGroup>(R.id.detail_fragment_container)
         mTablet = fragmentContainer != null
@@ -49,6 +46,14 @@ class MainActivity : AppCompatActivity(), DetailFragment.FragmentListener {
 
     override fun onFragmentFinish(firstName: String, lastName: String, age: Int) {
         Log.i(myFragmentFinishTAG, "onFragmentFinish: $firstName, $lastName, $age")
+
+        val fragment = supportFragmentManager
+            .findFragmentById(R.id.detail_fragment_container) as DetailFragment
+
+        supportFragmentManager
+            .beginTransaction()
+            .remove(fragment)
+            .commit()
     }
 
 }
