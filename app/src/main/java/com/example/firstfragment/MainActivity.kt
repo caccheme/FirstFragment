@@ -30,9 +30,12 @@ class MainActivity : AppCompatActivity(), DetailFragment.FragmentListener {
     }
 
     private fun viewDetailFragment() {
+
+        val person = Person("Mickey", "Mouse", 35)
+
         if (mTablet) {
             val fragmentManager = supportFragmentManager
-            val fragment = DetailFragment()
+            val fragment = DetailFragment.newInstance(person)
             fragmentManager
                 .beginTransaction()
                 .addToBackStack(null)
@@ -44,8 +47,11 @@ class MainActivity : AppCompatActivity(), DetailFragment.FragmentListener {
         }
     }
 
-    override fun onFragmentFinish(firstName: String, lastName: String, age: Int) {
-        Log.i(myFragmentFinishTAG, "onFragmentFinish: $firstName, $lastName, $age")
+    override fun onFragmentFinish(person: Person) {
+        Log.i(
+            myFragmentFinishTAG, "onFragmentFinish: " +
+                    "${person.firstName}, ${person.lastName}, ${person.age}"
+        )
 
         val fragment = supportFragmentManager
             .findFragmentById(R.id.detail_fragment_container) as DetailFragment

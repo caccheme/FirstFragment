@@ -16,6 +16,17 @@ class DetailFragment : Fragment() {
 
     private var mListener: FragmentListener? = null
 
+    companion object{
+        // Use this function to create instance of your fragment
+        fun newInstance(person: Person): DetailFragment {
+            val args = Bundle()
+            args.putParcelable("PERSON_KEY", person)
+            val fragment = DetailFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -30,9 +41,15 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val rootView = inflater.inflate(R.layout.fragment_detail, container, false)
-        var textFirstName = rootView.findViewById<View>(R.id.textFirstName) as EditText
-        var textLastName = rootView.findViewById<View>(R.id.textLastName) as EditText
-        var textAge = rootView.findViewById<View>(R.id.textAge) as EditText
+        val textFirstName = rootView.findViewById<View>(R.id.textFirstName) as EditText
+        val textLastName = rootView.findViewById<View>(R.id.textLastName) as EditText
+        val textAge = rootView.findViewById<View>(R.id.textAge) as EditText
+
+        val person = this.arguments?.getParcelable<Person>("PERSON_KEY")
+        textFirstName.setText(person?.firstName)
+        textLastName.setText(person?.lastName)
+        textAge.setText(person?.age.toString())
+
         val doneButton = rootView.findViewById<View>(R.id.done_button) as Button
         doneButton.setOnClickListener { done() }
         return rootView
@@ -50,11 +67,12 @@ class DetailFragment : Fragment() {
         val lastName: String = textLastName.text.toString()
         val age: Int = Integer.valueOf(textAge.text.toString())
 
-        mListener?.onFragmentFinish(firstName, lastName, age)
+        val person = Person(firstName, lastName, age)
+        mListener?.onFragmentFinish(person)
     }
 
     interface FragmentListener {
-        fun onFragmentFinish(firstName: String, lastName: String, age: Int)
+        fun onFragmentFinish(person: Person)
     }
 
 }
