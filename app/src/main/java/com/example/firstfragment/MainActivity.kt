@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showDialog() {
         val dialogFragment = AlertDialogFragment()
+        dialogFragment.isCancelable = false
         dialogFragment.show(supportFragmentManager, "DIALOG_FRAGMENT")
     }
 
