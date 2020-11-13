@@ -2,25 +2,15 @@ package com.example.firstfragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
-    private var mTablet: Boolean = true
-
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val fragmentContainer = findViewById<ViewGroup>(R.id.detail_fragment_container)
-        mTablet = fragmentContainer != null
-
-        val tvOut: TextView = findViewById(R.id.textOut)
-        tvOut.text = "Fragments side-by-side? $mTablet"
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
 
@@ -28,12 +18,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showDialog() {
-        val dialog = DataEntryDialog()
-        dialog.show(supportFragmentManager, "DIALOG_FRAGMENT")
 
-//        val dialogFragment = AlertDialogFragment()
-//        dialogFragment.isCancelable = false
-//        dialogFragment.show(supportFragmentManager, "DIALOG_FRAGMENT")
+        val p = Person("Mickey", "Mouse", 35)
+
+        val dialog = DataEntryDialog().newInstance(p)
+        dialog.show(supportFragmentManager, "DIALOG_FRAGMENT")
     }
 
 }
