@@ -16,4 +16,7 @@
     <string name="age">Age</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="product_name">Product name</string>
+    <string name="_28_00">$28.00</string>
+    <string name="about_text">about text</string>
 </resources>
