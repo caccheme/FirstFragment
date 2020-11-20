@@ -1,35 +1,46 @@
 package com.example.firstfragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.example.david.viewpager.DataProvider
 
-class MainActivity : AppCompatActivity(),
-    DataEntryDialog.DataEntryListener {
+@Suppress("DEPRECATION")
+class MainActivity : AppCompatActivity() {
+    private lateinit var mPager: ViewPager
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-
-        fab.setOnClickListener { showDialog() }
+        mPager = findViewById(R.id.pager)
+        val pagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        mPager.adapter = pagerAdapter
     }
 
-    private fun showDialog() {
+    private class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+        private val products: List<Product> = DataProvider.productList
+        private val numPages = products.size
 
-        val p = Person("Mickey", "Mouse", 35)
+        override fun getCount(): Int {
+            return numPages
+        }
 
-        val dialog = DataEntryDialog().newInstance(p)
-        dialog.show(supportFragmentManager, "DIALOG_FRAGMENT")
+        override fun getItem(position: Int): Fragment {
+            return ItemFragment.newInstance(products[position])
+        }
+
     }
 
-    override fun onDataEntryComplete(person: Person){
-        Toast.makeText(this, "You entered ${person.firstName} ${person.lastName}",
-            Toast.LENGTH_SHORT).show()
+    override fun onBackPressed() {
+        if (mPager.currentItem == 0) {
+            super.onBackPressed()
+        } else {
+            mPager.currentItem = mPager.currentItem -1
+        }
     }
 
 }
