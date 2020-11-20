@@ -34,4 +34,13 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onBackPressed() {
+        if (mPager.currentItem == 0) {
+            super.onBackPressed()
+        } else {
+            mPager.currentItem = mPager.currentItem -1
+        }
+    }
+
 }
