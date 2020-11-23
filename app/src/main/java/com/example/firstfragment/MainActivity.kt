@@ -1,46 +1,38 @@
 package com.example.firstfragment
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.ViewPager
-import com.example.david.viewpager.DataProvider
+
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-    private lateinit var mPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mPager = findViewById(R.id.pager)
-        val pagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        mPager.adapter = pagerAdapter
     }
 
-    private class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-        private val products: List<Product> = DataProvider.productList
-        private val numPages = products.size
-
-        override fun getCount(): Int {
-            return numPages
-        }
-
-        override fun getItem(position: Int): Fragment {
-            return ItemFragment.newInstance(products[position])
-        }
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
     }
 
-    override fun onBackPressed() {
-        if (mPager.currentItem == 0) {
-            super.onBackPressed()
-        } else {
-            mPager.currentItem = mPager.currentItem -1
-        }
+    fun onSettingsClick(item: MenuItem) {
+        val intent = Intent(this, MyPreferencesActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onTestPrefClick(item: MenuItem) {
+        val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val userName: String? = preferences.getString("username", "not defined")
+        Toast.makeText(this, "User Name: $userName", Toast.LENGTH_SHORT).show()
     }
 
 }
